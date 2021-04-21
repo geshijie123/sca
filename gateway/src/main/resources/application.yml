@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: dev
+
+
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: lb://user
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/u/**
+        - id: order
+          uri: lb://order
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/o/**
